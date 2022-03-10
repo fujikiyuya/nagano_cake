@@ -1,10 +1,28 @@
 Rails.application.routes.draw do
 
-  root to: "homes#top"
+  namespace :public do
+    resources :addresses, only: [:index, :edit]
+    resources :orders, only: [:new, :create, :index, :show]
+    resources :cart_items, only: [:index, :update, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
+    resources :customers, only: [:show, :edit, :update]
+    resources :items, only: [:index, :show]
+  end
 
   namespace :admin do
-    get "homes/top" => "homes#top"
+    root to: "homes#top"
+    resources :orders, only: [:show]
+    resources :customers, only: [:index, :show, :edit]
+    resources :items, only: [:new, :create, :index, :show, :edit]
+
   end
+
+  root to: "homes#top"
+
+
 
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
