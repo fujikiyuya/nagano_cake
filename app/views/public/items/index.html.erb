@@ -1,0 +1,7 @@
+<h4>商品一覧</h4>
+<% @items.each do |item| %>
+<%= image_tag item.get_image %>
+<%= item.name %>
+¥<%= item.with_tax_price.to_s(:delimited) %>
+
+<%= paginate @items %>
