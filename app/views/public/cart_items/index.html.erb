@@ -8,11 +8,11 @@
     <th>小計</th>
     <th></th>
   </tr>
-  <%= button_to "カートを空にする", destroy_all_cart_item_path, method: :delete %>
+  <%= button_to "カートを空にする", destroy_all_cart_items_path, method: :delete %>
   <%= @cart_items.each do |cart_item| %>
   <tbody>
-    <td><%= cart_item.name %></td>
-    <td><%= cart_item.with_tax_price.to_s(:delimited) %></td>
+    <td><%= cart_item.item.name %></td>
+    <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
     <%= form_with model: cart_item, url: cart_items_path, method: :patch do |f| %>
     <td>
       <%= f.select :amount, *[1..20] %>
@@ -23,6 +23,7 @@
     <% @total += cart_item.subtotal %>
     <td><%= link_to "削除", cart_item_path(cart_item), method: :delete, 'date-confirm' => "本当に削除しますか？" %></td>
   </tbody>
+  <% end %>
 </table>
 合計金額<%= @total %>
 <%= link_to "買い物を続ける", items_path %>

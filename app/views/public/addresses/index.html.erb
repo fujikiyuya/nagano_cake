@@ -1,1 +1,40 @@
+<h4>配送先登録/一覧</h4>
+<table>
+<%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+  <tr>
+    <th>郵便番号(ハイフンなし)</th>
+    <td><%= f.text_field :postal_code %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <th>宛名</th>
+    <td><%= f.text_field :name %></td>
+    <td><%= f.submit "新規登録" %></td>
+  </tr>
+<% end %>
+</table>
 
+<table>
+  <tr>
+    <td>郵便番号</td>
+    <td>住所</td>
+    <td>宛名</td>
+    <td></td>
+  </tr>
+  <tbody>
+  <% @addresses.each do |address| %>
+    <tr>
+      <td><%= address.postal_code %></td>
+      <td><%= address.address %></td>
+      <td><%= address.name %></td>
+      <td>
+        <%= link_to "編集する", edit_address_path(@address.id) %>
+        <%= link_to "削除する", address_path(@address), method: :delete, 'date-confirm' => "本当に消しますか" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
