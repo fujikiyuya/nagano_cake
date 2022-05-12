@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,75 +14,72 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light" style="border-bottom: 2px solid #000000;">
         <div class="container-fluid">
           <a class="navbar-brand">LOGO</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="nav justify-content-end">
+            <ul class="navbar-nav" style="margin-left: 58%;">
             <% if customer_signed_in? %>
-              <li class="nav-item">
-                <%= link_to customer_path(current_customer.id) do %>
-                  <p class="nav-link active">マイページ</p>
+              <li class="nav-item col-md-4">
+                <%= link_to customer_path do %>
+                  <p class="btn btn-outline-secondary">マイページ</p>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-md-4">
                 <%= link_to items_path do %>
-                  <p class="nav-link">商品一覧</p>
+                  <p class="btn btn-outline-secondary">商品一覧</p>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-md-3">
                 <%= link_to cart_items_path do %>
-                  <p class="nav-link">カート</p>
+                  <p class="btn btn-outline-secondary">カート</p>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-md-4">
                 <%= link_to destroy_customer_session_path, method: :delete do %>
-                  <p class="nav-link">ログアウト</p>
+                  <p class="btn btn-outline-secondary">ログアウト</p>
                 <% end %>
               </li>
             <% elsif admin_signed_in? %>
-              <li class="nav-item">
+              <li class="nav-item col-md-3">
                 <%= link_to admin_items_path do %>
-                  <p class="nav-link">商品一覧</p>
+                  <p class="btn btn-outline-secondary">商品一覧</p>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-md-3">
                 <%= link_to admin_customers_path do %>
-                  <p class="nav-link">会員一覧</p>
+                  <p class="btn btn-outline-secondary">会員一覧</p>
                 <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to admin_order_path(@order.id) do %>
-                  <p class="nav-link">注文履歴一覧</p>
+              <li class="nav-item col-md-4">
+                <%= link_to admin_orders_path do %>
+                  <p class="btn btn-outline-secondary">注文履歴一覧</p>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-md-4">
                 <%= link_to destroy_admin_session_path, method: :delete do %>
-                  <p class="nav-link">ログアウト</p>
+                  <p class="btn btn-outline-secondary">ログアウト</p>
                 <% end %>
               </li>
             <% else %>
-              <li class="nav-item">
+              <li class="nav-item col-md-3">
                 <%= link_to about_path do %>
-                  <p class="nav-link">About</p>
+                  <p class="btn btn-outline-secondary">About</p>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-md-4">
                 <%= link_to items_path do %>
-                  <p class="nav-link">商品一覧</p>
+                  <p class="btn btn-outline-secondary">商品一覧</p>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-md-4">
                 <%= link_to new_customer_registration_path do %>
-                  <p class="nav-link">新規登録</p>
+                  <p class="btn btn-outline-secondary">新規登録</p>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-md-4">
                 <%= link_to new_customer_session_path do %>
-                  <p class="nav-link">ログイン</p>
+                  <p class="btn btn-outline-secondary">ログイン</p>
                 <% end %>
               </li>
             <% end %>
@@ -92,5 +89,8 @@
       </nav>
     </header>
     <%= yield %>
+    <footer style="width: 100%; height: auto; bottom: 0; border-top: 2px solid #000000;">
+      <p style="text-align: center">ながのCAKE</p>
+    </footer>
   </body>
 </html>

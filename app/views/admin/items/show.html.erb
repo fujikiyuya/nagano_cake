@@ -1,28 +1,43 @@
-<h2>商品詳細</h2>
-<%= image_tag @item.get_image %>
+<div class="container mt-4 mb-5">
+  <div class="row">
+    <h5 class="col-md-2 offset-md-1" style="background: #EEEEEE; text-align: center;"><strong>商品詳細</strong></h5>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>商品名</th>
-    <td><%= @item.name %></td>
-  </tr>
-  <tr>
-    <th>商品説明</th>
-    <td><%= @item.introduction %></td>
-  </tr>
-  <tr>
-    <th>
-      税込価格<br>
-      （税抜価格）
-    </th>
-    <td>
-      <%= @item.with_tax_price %>
-      (<%= @item.price %>)
-    </td>
-  </tr>
-  <tr>
-    <th>販売ステータス</th>
-    <td><%= @item.is_active %></td>
-  </tr>
-</table>
-<%= link_to "編集する", edit_admin_item_path %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <%= image_tag @item.get_image(400, 400) %>
+    </div>
+    <table class="col-md-5">
+      <tr>
+        <th class="col-sm-2">商品名</th>
+        <td class="col-sm-3"><%= @item.name %></td>
+      </tr>
+      <tr>
+        <th class="col-sm-2">商品説明</th>
+        <td class="col-sm-3"><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <th class="col-sm-2">
+          税込価格<br>
+          (税抜価格)
+        </th>
+        <td class="col-sm-3">
+          <%= @item.with_tax_price %>
+          (<%= @item.price %>)円
+        </td>
+      </tr>
+      <tr>
+        <th class="col-sm-2">販売ステータス</th>
+        <% if @item.is_active == true %>
+          <td class="col-sm-3" style="color: #00BB00">販売中</td>
+        <% else %>
+          <td class="col-sm-3" style="color: #CCCCCC">販売停止中</td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="mt-5 mb-5" style="text-align: center"><%= link_to "　編集する　", edit_admin_item_path, class: "btn btn-success" %></div>

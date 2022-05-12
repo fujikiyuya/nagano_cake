@@ -1,32 +1,53 @@
-<h2>商品一覧</h2>
-<%= link_to "新規登録", new_admin_item_path %>
-<table>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th></th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <% @items.each do |item| %>
-  <tbody>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= item.name %></td>
-      <td><%= item.price %></td>
-      <td></td>
-      <% if item.is_active == true %>
-        <td>販売中</td>
-      <% else %>
-        <td>販売停止中</td>
-      <% end %>
-    </tr>
-  </tbody>
-  <% end %>
 
-</table>
-<%= paginate @items %>
+<div class="container mt-4 mb-1">
+  <div class="row">
+    <h5 class="col-md-2 offset-md-1" style="background: #DDDDDD; text-align: center"><strong>商品一覧</strong></h5>
+    <div class="col-md-2 ml-auto">
+      <%= link_to new_admin_item_path do %>
+        <i class="fa fa-plus-circle"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10" style="margin: auto;">
+      <table class="table table-borderless">
+        <thead class="table-active">
+          <tr>
+            <th class="col-sm-1">商品ID</th>
+            <th class="col-sm-3">商品名</th>
+            <th class="col-sm-1">税抜価格</th>
+            <th class="col-sm-1">ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td class="col-sm-1"><%= item.id %></td>
+            <td class="col-sm-3">
+              <%= link_to admin_item_path(item.id) do %>
+                <%= item.name %>
+              <% end %>
+            </td>
+            <td class="col-sm-1"><%= item.price.to_s(:delimited) %></td>
+              <% if item.is_active == true %>
+                <td class="col-sm-1" style="color: #00BB00">販売中</td>
+              <% else %>
+                <td class="col-sm-1" style="color: #CCCCCC">販売停止中
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+<div class="container ml-auto">
+  <div class="row">
+    <div class="col-md"><%= paginate @items %></div>
+  </div>
+</div>
+
 
 

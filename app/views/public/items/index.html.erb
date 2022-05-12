@@ -1,10 +1,28 @@
-<h4>商品一覧</h4>
-<% @items.each do |item| %>
-  <%= image_tag item.get_image %>
-  <%= link_to item_path(item.id) do %>
-    <%= item.name %>
-  <% end %>
-  ¥<%= item.with_tax_price.to_s(:delimited) %>
-<% end %>
+<div class="container mt-4 mb-3">
+  <div class="row">
+    <h4 class="col-md-2" style="background: #EEEEEE; text-align: center;">
+      <strong>商品一覧</strong>
+    </h4>
+  </div>
+</div>
+<div class="containar ml-5">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <% @items.each do |item| %>
+    <div class="col">
+      <table>
+        <tr>
+          <td>
+            <%= link_to item_path(item.id) do %>
+              <%= image_tag item.get_image(200, 150) %><br>
+            <% end %>
+              <%= item.name %><br>
+            ¥<%= item.with_tax_price.to_s(:delimited) %><br>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <% end %>
+  </div>
+</div>
 
 <%= paginate @items %>

@@ -13,3 +13,47 @@
  *= require_tree .
  *= require_self
  */
+
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h5 {
+  margin: 30px;
+  background-color: #EEEEEE;
+}
+
+header {
+  height: 100px;
+}
+
+body {
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  position: relative;
+}
+
+.paginate{
+  justify-content: center;
+}
+
+div {
+  display: block;
+}
+
+ .container {
+   margin-top: 20px;
+ }
+
+ .input-mysize {
+   width: 100px;
+ }
+
+ footer {
+    width: 100%;
+    bottom: 0;
+    border-top: 2px solid #000000;
+ }

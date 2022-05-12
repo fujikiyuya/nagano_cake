@@ -1,0 +1,15 @@
+<h4>注文履歴詳細</h4>
+<table>
+  <tr>
+    <th>購入者</th>
+    <td><%= current_customer.last_name %><%= current_customer.first_name %></td>
+  </tr>
+  <tr>
+    <th>注文日</th>
+    <td><%= @order_detail.created_at %></td>
+  </tr>
+  <tr>
+    <th>配送先</th>
+    <td><%= @order_detail.order.address %></td>
+  </tr>
+</table>

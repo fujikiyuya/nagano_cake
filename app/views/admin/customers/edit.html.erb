@@ -1,2 +1,55 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <h4><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4>
+      <table class="table table-borderless">
+        <tr>
+          <td>会員ID</td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
+        <tr>
+          <td class="col-sm-2">氏名</td>
+          <td class="col-sm-2"><%= f.text_field :last_name %></td>
+          <td class="col-sm-4"><%= f.text_field :first_name %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-2">フリガナ</td>
+          <td class="col-sm-2"><%= f.text_field :last_name_kana %></td>
+          <td class="col-sm-6"><%= f.text_field :first_name_kana %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-2">郵便番号</td>
+          <td><%= f.text_field :postal_code %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-2">住所</td>
+          <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-2">電話番号</td>
+          <td><%= f.text_field :telephone_number %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-2">メールアドレス</td>
+          <td><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-2">会員ステータス</td>
+          <td class="col-sm-2">
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+

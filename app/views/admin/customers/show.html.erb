@@ -1,2 +1,80 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container mt-4 mb-auto">
+  <div class="row">
+    <div class="col-md">
+      <h5 class="col-md-3" style="background: #DDDDDD; text-align: center;">
+        <strong><%= @customer.last_name %><%= @customer.first_name %></strong>さんの<strong>会員詳細</strong>
+      </h5>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <table class="table table-borderless">
+        <tr>
+          <td class="col-sm-3">会員ID</td>
+          <td class="col-sm-9"><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-3">氏名</td>
+          <td class="col-sm-9"><%= @customer.last_name %><%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-3">フリガナ</td>
+          <td class="col-sm-9"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-3">郵便番号</td>
+          <td class="col-sm-9"><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-3">住所</td>
+          <td class="col-sm-9"><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-3">電話番号</td>
+          <td class="col-sm-9"><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-3">メールアドレス</td>
+          <td class="col-sm-9"><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <td class="col-sm-3">会員ステータス</td>
+          <td class="col-sm-9">
+            <% if @customer.is_deleted == false %>
+              有効
+            <% else %>
+              無効
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <table class="table table-borderless">
+        <tr>
+          <td class="col-sm-2"></td>
+          <td class="col-sm-1">
+            <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
+          </td>
+          <td class="col-sm-5">
+            <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary" %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
